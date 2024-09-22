@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
+import os
 import sys
+from functools import partial
+from PyQt5.QtWidgets import QApplication, QMainWindow, QLabel, QPushButton, QVBoxLayout, QWidget, QSpacerItem, QSizePolicy
+from PyQt5.QtCore import Qt
 import subprocess
-from ipaddress import ip_network, summarize_address_range, ip_address
-from PyQt5.QtWidgets import QApplication, QMainWindow, QLabel, QPushButton, QVBoxLayout, QWidget
-from PyQt5 import QtCore
+from ipaddress import ip_address, summarize_address_range
 
 class SimpleApp(QMainWindow):
     """
@@ -120,7 +122,7 @@ class SimpleApp(QMainWindow):
         """
         Toggles the blocking/unblocking of AMS1 IP addresses using iptables.
         """
-        ip_list = self.read_ips_from_file('/home/zel/Scripts/ip_addresses/block/AMS1.txt')
+        ip_list = self.read_ips_from_file('/home/zel/Scripts/Overwatch-Server-Selector-Linux/ip_addresses/block/AMS1.txt')
         if not self.ams1_ips_blocked:
             for ip in ip_list:
                 subprocess.run(['sudo', 'iptables', '-A', 'INPUT', '-s', ip, '-j', 'DROP'])
@@ -137,7 +139,7 @@ class SimpleApp(QMainWindow):
         """
         Toggles the blocking/unblocking of GAN3 IP addresses using iptables.
         """
-        ip_list = self.read_ips_from_file('/home/zel/Scripts/ip_addresses/block/GAN3.txt')
+        ip_list = self.read_ips_from_file('/home/zel/Scripts/Overwatch-Server-Selector-Linux/ip_addresses/block/GAN3.txt')
         if not self.gan3_ips_blocked:
             for ip in ip_list:
                 subprocess.run(['sudo', 'iptables', '-A', 'INPUT', '-s', ip, '-j', 'DROP'])
@@ -154,7 +156,7 @@ class SimpleApp(QMainWindow):
         """
         Toggles the blocking/unblocking of GBR1 IP addresses using iptables.
         """
-        ip_list = self.read_ips_from_file('/home/zel/Scripts/ip_addresses/block/GBR1.txt')
+        ip_list = self.read_ips_from_file('/home/zel/Scripts/Overwatch-Server-Selector-Linux/ip_addresses/block/GBR1.txt')
         if not self.gbr1_ips_blocked:
             for ip in ip_list:
                 subprocess.run(['sudo', 'iptables', '-A', 'INPUT', '-s', ip, '-j', 'DROP'])
@@ -171,7 +173,7 @@ class SimpleApp(QMainWindow):
         """
         Toggles the blocking/unblocking of GEN1 IP addresses using iptables.
         """
-        ip_list = self.read_ips_from_file('/home/zel/Scripts/ip_addresses/block/GEN1.txt')
+        ip_list = self.read_ips_from_file('/home/zel/Scripts/Overwatch-Server-Selector-Linux/ip_addresses/block/GEN1.txt')
         if not self.gen1_ips_blocked:
             for ip in ip_list:
                 subprocess.run(['sudo', 'iptables', '-A', 'INPUT', '-s', ip, '-j', 'DROP'])
@@ -188,7 +190,7 @@ class SimpleApp(QMainWindow):
         """
         Toggles the blocking/unblocking of GMEC1 IP addresses using iptables.
         """
-        ip_list = self.read_ips_from_file('/home/zel/Scripts/ip_addresses/block/GMEC1.txt')
+        ip_list = self.read_ips_from_file('/home/zel/Scripts/Overwatch-Server-Selector-Linux/ip_addresses/block/GMEC1.txt')
         if not self.gmec1_ips_blocked:
             for ip in ip_list:
                 subprocess.run(['sudo', 'iptables', '-A', 'INPUT', '-s', ip, '-j', 'DROP'])
@@ -205,7 +207,7 @@ class SimpleApp(QMainWindow):
         """
         Toggles the blocking/unblocking of GMEC2 IP addresses using iptables.
         """
-        ip_list = self.read_ips_from_file('/home/zel/Scripts/ip_addresses/block/GMEC2.txt')
+        ip_list = self.read_ips_from_file('/home/zel/Scripts/Overwatch-Server-Selector-Linux/ip_addresses/block/GMEC2.txt')
         if not self.gmec2_ips_blocked:
             for ip in ip_list:
                 subprocess.run(['sudo', 'iptables', '-A', 'INPUT', '-s', ip, '-j', 'DROP'])
@@ -222,7 +224,7 @@ class SimpleApp(QMainWindow):
         """
         Toggles the blocking/unblocking of GSG1 IP addresses using iptables.
         """
-        ip_list = self.read_ips_from_file('/home/zel/Scripts/ip_addresses/block/GSG1.txt')
+        ip_list = self.read_ips_from_file('/home/zel/Scripts/Overwatch-Server-Selector-Linux/ip_addresses/block/GSG1.txt')
         if not self.gsg1_ips_blocked:
             for ip in ip_list:
                 subprocess.run(['sudo', 'iptables', '-A', 'INPUT', '-s', ip, '-j', 'DROP'])
@@ -239,7 +241,7 @@ class SimpleApp(QMainWindow):
         """
         Toggles the blocking/unblocking of GTK1 IP addresses using iptables.
         """
-        ip_list = self.read_ips_from_file('/home/zel/Scripts/ip_addresses/block/GTK1.txt')
+        ip_list = self.read_ips_from_file('/home/zel/Scripts/Overwatch-Server-Selector-Linux/ip_addresses/block/GTK1.txt')
         if not self.gtk1_ips_blocked:
             for ip in ip_list:
                 subprocess.run(['sudo', 'iptables', '-A', 'INPUT', '-s', ip, '-j', 'DROP'])
@@ -256,7 +258,7 @@ class SimpleApp(QMainWindow):
         """
         Toggles the blocking/unblocking of GUW2 IP addresses using iptables.
         """
-        ip_list = self.read_ips_from_file('/home/zel/Scripts/ip_addresses/block/GUW2.txt')
+        ip_list = self.read_ips_from_file('/home/zel/Scripts/Overwatch-Server-Selector-Linux/ip_addresses/block/GUW2.txt')
         if not self.guw2_ips_blocked:
             for ip in ip_list:
                 subprocess.run(['sudo', 'iptables', '-A', 'INPUT', '-s', ip, '-j', 'DROP'])
@@ -273,7 +275,7 @@ class SimpleApp(QMainWindow):
         """
         Toggles the blocking/unblocking of ICN1 IP addresses using iptables.
         """
-        ip_list = self.read_ips_from_file('/home/zel/Scripts/ip_addresses/block/ICN1.txt')
+        ip_list = self.read_ips_from_file('/home/zel/Scripts/Overwatch-Server-Selector-Linux/ip_addresses/block/ICN1.txt')
         if not self.icn1_ips_blocked:
             for ip in ip_list:
                 subprocess.run(['sudo', 'iptables', '-A', 'INPUT', '-s', ip, '-j', 'DROP'])
@@ -290,7 +292,7 @@ class SimpleApp(QMainWindow):
         """
         Toggles the blocking/unblocking of LAS1 IP addresses using iptables.
         """
-        ip_list = self.read_ips_from_file('/home/zel/Scripts/ip_addresses/block/LAS1.txt')
+        ip_list = self.read_ips_from_file('/home/zel/Scripts/Overwatch-Server-Selector-Linux/ip_addresses/block/LAS1.txt')
         if not self.las1_ips_blocked:
             for ip in ip_list:
                 subprocess.run(['sudo', 'iptables', '-A', 'INPUT', '-s', ip, '-j', 'DROP'])
@@ -307,7 +309,7 @@ class SimpleApp(QMainWindow):
         """
         Toggles the blocking/unblocking of ORD1 IP addresses using iptables.
         """
-        ip_list = self.read_ips_from_file('/home/zel/Scripts/ip_addresses/block/ORD1.txt')
+        ip_list = self.read_ips_from_file('/home/zel/Scripts/Overwatch-Server-Selector-Linux/ip_addresses/block/ORD1.txt')
         if not self.ord1_ips_blocked:
             for ip in ip_list:
                 subprocess.run(['sudo', 'iptables', '-A', 'INPUT', '-s', ip, '-j', 'DROP'])
@@ -324,7 +326,7 @@ class SimpleApp(QMainWindow):
         """
         Toggles the blocking/unblocking of SYD2 IP addresses using iptables.
         """
-        ip_list = self.read_ips_from_file('/home/zel/Scripts/ip_addresses/block/SYD2.txt')
+        ip_list = self.read_ips_from_file('/home/zel/Scripts/Overwatch-Server-Selector-Linux/ip_addresses/block/SYD2.txt')
         if not self.syd2_ips_blocked:
             for ip in ip_list:
                 subprocess.run(['sudo', 'iptables', '-A', 'INPUT', '-s', ip, '-j', 'DROP'])
@@ -341,7 +343,7 @@ class SimpleApp(QMainWindow):
         """
         Toggles the blocking/unblocking of TPE1 IP addresses using iptables.
         """
-        ip_list = self.read_ips_from_file('/home/zel/Scripts/ip_addresses/block/TPE1.txt')
+        ip_list = self.read_ips_from_file('/home/zel/Scripts/Overwatch-Server-Selector-Linux/ip_addresses/block/TPE1.txt')
         if not self.tpe1_ips_blocked:
             for ip in ip_list:
                 subprocess.run(['sudo', 'iptables', '-A', 'INPUT', '-s', ip, '-j', 'DROP'])
