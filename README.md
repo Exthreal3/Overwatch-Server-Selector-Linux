@@ -3,7 +3,8 @@
 
 # Dependencies
 This application requires that you have Python and PyQt installed.
-1. Install PyQt ```pip install PyQt```
+ 1. Install PyQt ```pip install PyQt```
+ 2. ```sudo apt-get install iptables -y```
 
 # Usage
 Currently I have not created any file structure to be used on other machines, and this only works on my machine; I will get around to changing this soon.
