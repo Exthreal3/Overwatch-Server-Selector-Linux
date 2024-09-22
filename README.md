@@ -2,7 +2,7 @@
  A simple PyQt application for blocking Overwatch 2 server IP addresses
 
 # Dependencies
-This application requires that you have Python and PyQt installed.
+This application requires that you have iptables and PyQt installed.
  1. Install PyQt ```pip install PyQt```
  2. ```sudo apt-get install iptables -y```
 
